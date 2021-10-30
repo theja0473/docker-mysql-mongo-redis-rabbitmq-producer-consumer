@@ -72,15 +72,17 @@ services:
       - app-network
   
   pythonapp:
-    container_name: "python"
+    container_name: "python-npm-app"
     build:
       context: ./python-app
       dockerfile: Dockerfile
-    working_dir: /app
+    working_dir: /home/pn/app
     ports:
       - '5000:5000'
+    stdin_open: true
+    tty: true
     volumes:
-      - ./data/python-app:/app
+      - ./data/python-app:/home/pn/app
     networks:
       - app-network
 

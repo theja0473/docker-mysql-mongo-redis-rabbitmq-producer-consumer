@@ -1,9 +1,10 @@
-FROM python:3.7
+FROM nikolaik/python-nodejs
 
 ADD requirements.txt /tmp/requirements.txt
 RUN pip install -U -r /tmp/requirements.txt
 
-ADD . /app
-WORKDIR /app
-VOLUME /app
+USER pn
+
+WORKDIR /home/pn/app
+VOLUME /home/pn/app
 EXPOSE 5000
