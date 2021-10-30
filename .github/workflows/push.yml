@@ -8,4 +8,4 @@ jobs:
       - name: Build the stack
         run: docker-compose up -d
       - name: Test
-        run: docker run rabbitmq appropriate/curl -s --retry 10 --retry-connrefused http://localhost:15672/
+        run: docker run rabbitmq curl -s --retry 10 --retry-connrefused http://localhost:15672/
