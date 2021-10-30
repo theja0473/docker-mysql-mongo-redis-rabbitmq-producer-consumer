@@ -70,6 +70,19 @@ services:
       - ./data/rabbitmq:/var/lib/rabbitmq
     networks:
       - app-network
+  
+  pythonapp:
+    container_name: "python"
+    build:
+      context: ./python-app
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./data/python-app:/app
+    networks:
+      - app-network
 
 networks:
   app-network:
