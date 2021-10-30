@@ -1,0 +1,72 @@
+version: "3.7"
+
+services:
+  producer:
+    build:
+      context: ./producer
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    volumes:
+      - ./producer:/usr/src/app
+    networks:
+      - app-network
+    command: python producer.py -p 5672 -s ${RABBIT_HOST_IP} -m "Hello" -r 30
+    links:
+      - rabbitmq
+
+  consumer:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    volumes:
+      - ./consumer:/usr/src/app
+    networks:
+      - app-network
+    command: python consumer.py -p 5672 -s ${RABBIT_HOST_IP}
+    links:
+      - rabbitmq
+      
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./config/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      TZ: 'Asia/kolkata'
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db
+    networks:
+      - app-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - app-network
+      
+  rabbitmq:
+    image: rabbitmq:3-managemt
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
