@@ -14,7 +14,7 @@ services:
       - RABBIT_HOST_IP=192.168.29.135
     command: python producer.py -p 5672 -s ${RABBIT_HOST_IP} -m "Hello" -r 30
     links:
-      - rabbitmq
+      - rabbitmq3
 
   consumer:
     build:
@@ -27,8 +27,8 @@ services:
       - app-network
     command: python consumer.py -p 5672 -s ${RABBIT_HOST_IP}
     links:
-      - rabbitmq
-      
+      - rabbitmq3
+
   mysql:
     image: mysql:latest
     ports:
@@ -63,9 +63,6 @@ services:
   rabbitmq3:
     container_name: "rabbitmq"
     image: rabbitmq:3.8-management-alpine
-    environment:
-      - RABBITMQ_DEFAULT_USER=root
-      - RABBITMQ_DEFAULT_PASS="root@123"
     ports:
       - '5672:5672'
       - '15672:15672'      
