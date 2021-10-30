@@ -29,7 +29,7 @@ Set the environment variable RABBIT_HOST_IP. This should be the host IP you get 
 ## Running
 
 ```shell
-cd docker-mysql-mongo-redis
+cd docker-mysql-mongo-redis-rabbitmq-producer-consumer
 docker-compose up -d
 
 # show docker-compose log
