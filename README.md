@@ -1,5 +1,5 @@
-# docker-mysql-mongo-redis-rabbitmq-producer-consumer
-# Dockerized RabbitMQ messaging system producer/consumer example
+# Docker-mysql-mongo-redis-rabbitmq-producer-consumer
+# RabbitMQ messaging system producer/consumer example
 
 * Demonstrates example RabbitMQ simple producer/consumer running in Docker container
 
