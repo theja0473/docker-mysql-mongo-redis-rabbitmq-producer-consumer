@@ -14,6 +14,7 @@
 * [docker](https://docs.docker.com/install/)
 * [docker-compose](https://docs.docker.com/compose/install/)
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/)
+* [docker & docker-compose instll](https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-and-docker-compose-for-Ubuntu-20-04)
 
 ## Installing
 
@@ -53,3 +54,5 @@ If your environment variable is set incorrectly, you'll get something like
 ## Start the management interface to see the message traffic
     
     http://${RABBIT_HOST_IP}:15672 or if running locally http://127.0.0.1:15672/
+
+    Note: The default administrator username and password are guest and guest. 
